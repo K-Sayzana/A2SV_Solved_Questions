@@ -1,0 +1,15 @@
+class Solution:
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+        prefix={}
+        prefix[0]=0
+        acc=0
+
+        for i in range(len(nums)):
+            acc+=nums[i]
+            if prefix.get(acc%k, -1)!= -1 and i+1-prefix[acc%k]>=2:
+                return True
+        
+            if acc%k not in prefix:
+                prefix[acc%k]=i+1
+    
+        return False
